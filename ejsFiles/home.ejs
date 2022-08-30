@@ -1,0 +1,78 @@
+<html>
+
+  <head>
+
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"> 
+
+<!-- Our css should be below all other styles so that we can over-ride it -->
+
+    <link rel="stylesheet" href="css/home.css">
+
+  </head>
+
+  <body>
+
+    <h1 id="page-heading">
+
+      <i class="fas fa-address-book address-book" id="icon" aria-hidden="true"></i>
+     <span class="change-color">My Contacts List</span>
+
+    </h1>
+
+    <ul id="un-list">
+
+      <% for(let i=0;i <contactList.length ;i++) { %>
+
+            <li class="list-item">
+
+ 
+                  <span >  <%= contactList[i].name %> </span>
+
+
+       
+                <div>
+
+                  <span>  <%= contactList[i].phone %> </span>
+<!-- Remove blue underline from link i.e the anchor tag here using text-decoration: none;-->
+                   <a href="/delete-contact/?id=<%= contactList[i].id %>" style="text-decoration: none;">
+
+                    <i class="fa-solid fa-trash-can styling-delete" ></i>
+                    
+                  </a>
+
+                  <span>
+                    <a href="/update-contact/?id=<%= contactList[i].id %>" style="text-decoration: none;">
+                    <i class="fa-solid fa-pen-to-square styling-update"></i>
+                    </a>
+                    
+                   </span>
+
+               </div>
+
+
+
+
+            </li>                     
+
+     <% } %>
+
+     </ul>
+
+<!-- post method is used here as we want to send data to the server and update the contact list accordingly -->
+    
+  <form action="/create-contact" method="POST" id="align-form"> 
+<!-- The name attribute acts as a key for the value entered in the input element,
+   when the form is submitted and data is received at the server. -->
+
+        <input type="text" name="name" placeholder="Name" required class="set-dim">
+        <input type="number" name="phone" placeholder="Phone" required class="set-dim"> 
+        <button type="submit" > <span class="gradient-text2"> 👉 Add Contact👈 </span></button>
+
+     </form>
+
+     <script src="javascript/home.js"></script>
+
+  </body>
+</html>

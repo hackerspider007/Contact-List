@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <!--
+      Instead of writting title we could have also written it as locals.title and it would work perfectly fine
+      because what happens is locals is a global Object in javascript . As we know that everything 
+      in javascript is an object So, the response is also a object and it has different key value pairs . 
+      One of the key value pair in the res object is the locals:{ }, now this local has the 2nd argumnent
+      written inside res.render() as the value here and locals is the key .So, res object looks like this
+      res={ ................
+            ................ other key value pairs
+      locals:{  
+                title: "Let us play with ejs",
+                mascots: mascots,
+                tagline: tagline,
+              } 
+            } 
+      So, if we try to replace title with locals.title then also it works due to this reason.
+      -->
+    <title><%= title %></title>
+  </head>
+
+  <body>
+    <h1>EJS Playground</h1>
+
+    <!-- printing or displaying unordered list on the screen -->
+
+    <h2>Variable</h2>
+
+    <p><%= tagline %></p>
+    <!-- we can change the tagline by making the button and whenever we click on the button the tagline will change without changing the url of the page. -->
+    <!-- We need to convert objects to string before printing it on screen as ejs will not be able to convert
+    Objects to String. -->
+    
+    <p>The length of array mascots is: <%= mascots.length %></p>
+
+    <!-- why are we getting error even when the below line is commented???????? -->
+      <p> res.locals -----> <%= JSON.stringify(res_locals); %> </p>
+      <p> locals Object ------> <%= JSON.stringify(locals); %> </p>
+    <p> locals.mascot ----------->> <%= JSON.stringify(locals.mascots); %></p> 
+    <p> locals.title -------------->> <%= locals.title %> </p>
+    <p> locals.tagline ------------->> <%= locals.tagline %> </p>
+
+
+    <ul>
+
+      <%  for(let i=0; i<mascots.length ;i++){ %>
+
+      <li>
+        <strong> <%= mascots[i].name %> </strong> representing <%= mascots[i].organization %>, born <%= mascots[i].birth_year %>
+      </li>
+
+      <% }; %>
+
+    </ul>
+
+    <div>
+
+
+
+    </div>
+
+  </body>
+</html>
